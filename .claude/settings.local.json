@@ -3,7 +3,13 @@
     "allow": [
       "Bash(npm run dev:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: CotizadorWeb con diseño moderno\n\n- Sistema de diseño inspirado en Stripe\n- Componentes UI reutilizables \\(Button, Card, Input, Badge\\)\n- Paleta violeta/cyan profesional\n- Next.js 14 con App Router\n- Zustand para estado global\n- Tipografía Inter y efectos modernos\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git config:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)"
     ]
   }
 }
