@@ -1,0 +1,94 @@
+{
+  "project": {
+    "name": "CotizadorWeb",
+    "description": "Plataforma de cotización de piezas para molinos SAC",
+    "version": "1.0.0"
+  },
+  "models": {
+    "default": "sonnet",
+    "agents": {
+      "tech-lead": "opus",
+      "ui-ux-designer": "opus",
+      "code-reviewer": "opus",
+      "security-analyst": "opus",
+      "frontend-dev": "sonnet",
+      "backend-dev": "sonnet",
+      "db-engineer": "sonnet",
+      "qa-engineer": "sonnet",
+      "devops-engineer": "sonnet",
+      "api-designer": "sonnet"
+    }
+  },
+  "stack": {
+    "frontend": {
+      "framework": "next.js",
+      "version": "14+",
+      "language": "typescript",
+      "styling": "tailwind",
+      "stateManagement": ["zustand", "react-query"],
+      "testing": ["jest", "react-testing-library", "cypress"]
+    },
+    "backend": {
+      "framework": "spring-boot",
+      "version": "3.x",
+      "language": "java",
+      "javaVersion": "17+",
+      "orm": "jpa-hibernate",
+      "testing": ["junit5", "mockito", "testcontainers"]
+    },
+    "database": {
+      "engine": "mysql",
+      "version": "8.x",
+      "migrations": "flyway"
+    },
+    "infrastructure": {
+      "containerization": "docker",
+      "ci-cd": "github-actions",
+      "cloud": "aws"
+    }
+  },
+  "conventions": {
+    "git": {
+      "commitStyle": "conventional",
+      "branchNaming": "feature|fix|refactor|chore/TICKET-description",
+      "prTemplate": true
+    },
+    "code": {
+      "frontend": {
+        "components": "PascalCase",
+        "hooks": "camelCase with use prefix",
+        "files": "PascalCase for components, camelCase for utils"
+      },
+      "backend": {
+        "classes": "PascalCase",
+        "methods": "camelCase",
+        "packages": "lowercase"
+      },
+      "database": {
+        "tables": "snake_case plural",
+        "columns": "snake_case",
+        "indexes": "idx_table_column",
+        "foreignKeys": "fk_table_reference"
+      }
+    }
+  },
+  "quality": {
+    "testing": {
+      "minCoverage": 80,
+      "requireTests": true
+    },
+    "codeReview": {
+      "required": true,
+      "autoAssign": true
+    },
+    "security": {
+      "dependencyScanning": true,
+      "secretsScanning": true
+    }
+  },
+  "documentation": {
+    "specsPath": "docs/especificaciones_funcionales.md",
+    "apiDocs": "openapi",
+    "readme": true
+  }
+}
