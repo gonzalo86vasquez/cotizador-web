@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Filter, Grid, List, X, Search } from 'lucide-react';
 import { ProductCard } from '@/components/features/ProductCard';
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 
-export default function CatalogoPage() {
+function CatalogoContent() {
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   const initialCategory = searchParams.get('category') || '';
@@ -376,5 +376,25 @@ export default function CatalogoPage() {
         </div>
       )}
     </Container>
+  );
+}
+
+export default function CatalogoPage() {
+  return (
+    <Suspense fallback={
+      <Container size="wide" section="lg">
+        <div className="animate-pulse">
+          <div className="h-10 bg-neutral-200 rounded-lg w-64 mb-4"></div>
+          <div className="h-6 bg-neutral-200 rounded-lg w-96 mb-8"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="h-96 bg-neutral-200 rounded-2xl"></div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    }>
+      <CatalogoContent />
+    </Suspense>
   );
 }
