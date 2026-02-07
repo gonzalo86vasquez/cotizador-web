@@ -77,8 +77,8 @@ export function Skeleton({
             key={index}
             className={clsx(baseStyles, variantStyles.text)}
             style={{
-              width: index === lines - 1 ? '60%' : '100%',
               ...computedStyle,
+              width: index === lines - 1 ? '60%' : '100%',
             }}
           />
         ))}
