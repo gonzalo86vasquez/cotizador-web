@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /** Visual style variant */
-  variant?: 'default' | 'glass' | 'gradient-border' | 'elevated' | 'flat';
+  variant?: 'default' | 'glass' | 'gradient-border' | 'elevated' | 'flat' | 'glow';
   /** Padding size */
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   /** Enable hover effects */
@@ -19,10 +19,10 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Card Component
+ * Card Component - FORGE Design System
  *
- * A flexible card component with multiple visual variants including
- * glassmorphism and gradient borders. Inspired by Stripe's card design.
+ * A flexible card component with industrial precision styling.
+ * Theme-aware with dark/light mode support.
  *
  * @example
  * ```tsx
@@ -32,11 +32,11 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * </Card>
  *
  * <Card variant="glass" interactive>
- *   Interactive glass card
+ *   Theme-aware glass card
  * </Card>
  *
- * <Card variant="gradient-border" shine>
- *   Premium card with gradient border
+ * <Card variant="glow" shine>
+ *   Card with forge-orange glow effect
  * </Card>
  * ```
  */
@@ -57,40 +57,44 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const baseStyles = clsx(
       'relative',
-      'rounded-2xl',
+      'rounded-lg',
       'transition-all duration-200 ease-out'
     );
 
     const variantStyles = {
       default: clsx(
-        'bg-white',
-        'border border-neutral-100',
-        'shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_2px_4px_rgba(0,0,0,0.05),0_12px_24px_rgba(0,0,0,0.05)]',
-        interactive && 'hover:shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_8px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.08)]'
+        'bg-[var(--color-surface)]',
+        'border border-[var(--color-border)]',
+        'shadow-[var(--shadow-card)]',
+        interactive && 'hover:shadow-[var(--shadow-card-hover)] hover:border-[var(--color-border-strong)]'
       ),
       glass: clsx(
-        'bg-white/80',
-        'backdrop-blur-xl',
-        'border border-white/50',
-        'shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_1px_2px_rgba(0,0,0,0.04),0_8px_16px_rgba(0,0,0,0.04)]'
+        'glass-card'
       ),
       'gradient-border': clsx(
-        'bg-white',
+        'bg-[var(--color-surface)]',
         // Gradient border using pseudo-element
-        'before:absolute before:inset-0 before:rounded-2xl before:p-[1px]',
-        'before:bg-gradient-to-r before:from-violet-600 before:via-purple-600 before:to-cyan-500',
+        'before:absolute before:inset-0 before:rounded-lg before:p-[1px]',
+        'before:bg-[var(--gradient-forge)]',
         'before:-z-10',
-        'after:absolute after:inset-[1px] after:rounded-[15px] after:bg-white',
+        'after:absolute after:inset-[1px] after:rounded-[11px] after:bg-[var(--color-surface)]',
         'after:-z-10'
       ),
       elevated: clsx(
-        'bg-white',
-        'shadow-xl',
-        interactive && 'hover:shadow-2xl'
+        'bg-[var(--color-surface)]',
+        'shadow-[var(--shadow-card-hover)]',
+        interactive && 'hover:shadow-[var(--shadow-glow-forge)]'
       ),
       flat: clsx(
-        'bg-neutral-50',
-        'border border-neutral-100'
+        'bg-[var(--color-background-muted)]',
+        'border border-[var(--color-border)]'
+      ),
+      glow: clsx(
+        'bg-[var(--color-surface)]',
+        'border border-[var(--color-border)]',
+        'shadow-[var(--shadow-card)]',
+        'hover:shadow-[var(--shadow-card-hover)] hover:border-[rgba(249,115,22,0.3)]',
+        'transition-all duration-300'
       ),
     };
 
@@ -110,7 +114,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       ? clsx(
           'overflow-hidden',
           'before:absolute before:inset-0',
-          'before:bg-gradient-to-br before:from-white/10 before:to-transparent',
+          'before:bg-gradient-to-br before:from-[var(--forge-500)]/10 before:to-transparent',
           'before:opacity-0 before:transition-opacity before:duration-200',
           'hover:before:opacity-100'
         )
@@ -130,7 +134,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       >
         {header && (
           <div className={clsx(
-            'border-b border-neutral-100',
+            'border-b border-[var(--color-border)]',
             padding !== 'none' && paddingStyles[padding]
           )}>
             {header}
@@ -143,9 +147,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
         {footer && (
           <div className={clsx(
-            'border-t border-neutral-100 bg-neutral-50/50',
+            'border-t border-[var(--color-border)] bg-[var(--color-background-muted)]',
             padding !== 'none' && paddingStyles[padding],
-            'rounded-b-2xl'
+            'rounded-b-lg'
           )}>
             {footer}
           </div>
@@ -173,10 +177,10 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     >
       <div className="space-y-1">
         {title && (
-          <h3 className="text-lg font-semibold text-neutral-900">{title}</h3>
+          <h3 className="text-lg font-semibold text-[var(--color-foreground)]">{title}</h3>
         )}
         {description && (
-          <p className="text-sm text-neutral-500">{description}</p>
+          <p className="text-sm text-[var(--color-foreground-muted)]">{description}</p>
         )}
         {children}
       </div>

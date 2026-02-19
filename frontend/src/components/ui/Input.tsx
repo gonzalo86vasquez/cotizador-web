@@ -24,10 +24,10 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 /**
- * Input Component
+ * Input Component - FORGE Design System
  *
- * A polished text input with support for labels, icons, and validation states.
- * Features a subtle focus ring animation inspired by Stripe's input design.
+ * A polished text input with theme-aware styling.
+ * Features forge-orange focus rings and semantic validation states.
  *
  * @example
  * ```tsx
@@ -101,25 +101,25 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const inputStyles = clsx(
       // Base
-      'w-full rounded-xl border bg-white',
-      'text-neutral-900 placeholder:text-neutral-400',
+      'w-full rounded-lg border bg-[var(--color-surface)]',
+      'text-[var(--color-foreground)] placeholder:text-[var(--color-foreground-subtle)]',
       'transition-all duration-150 ease-out',
       // Focus
       'focus:outline-none focus:ring-2 focus:ring-offset-0',
       // Hover (when not focused or disabled)
-      'hover:border-neutral-300',
+      'hover:border-[var(--color-border-strong)]',
       // Size
       sizeStyles[size].input,
       sizeStyles[size].padding,
       sizeStyles[size].paddingRight,
       // States
       hasError
-        ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
+        ? 'border-[var(--color-error)] focus:border-[var(--color-error)] focus:ring-[var(--color-error)]/20'
         : hasSuccess
-          ? 'border-emerald-300 focus:border-emerald-500 focus:ring-emerald-500/20'
-          : 'border-neutral-200 focus:border-violet-500 focus:ring-violet-500/20',
+          ? 'border-[var(--color-success)] focus:border-[var(--color-success)] focus:ring-[var(--color-success)]/20'
+          : 'border-[var(--color-border)] focus:border-[var(--forge-500)] focus:ring-[var(--color-primary-light)]',
       // Disabled
-      disabled && 'bg-neutral-50 cursor-not-allowed opacity-60',
+      disabled && 'bg-[var(--color-background-muted)] cursor-not-allowed opacity-60',
       className
     );
 
@@ -128,7 +128,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={id}
-            className="block text-sm font-medium text-neutral-700"
+            className="block text-sm font-medium text-[var(--color-foreground)]"
           >
             {label}
           </label>
@@ -140,7 +140,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <div
               className={clsx(
                 'absolute left-3 top-1/2 -translate-y-1/2',
-                'text-neutral-400 pointer-events-none',
+                'text-[var(--color-foreground-subtle)] pointer-events-none',
                 sizeStyles[size].icon
               )}
             >
@@ -169,16 +169,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
           >
             {hasError && !isPassword && (
-              <AlertCircle className="w-5 h-5 text-red-500" />
+              <AlertCircle className="w-5 h-5 text-[var(--color-error)]" />
             )}
             {hasSuccess && !isPassword && (
-              <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+              <CheckCircle2 className="w-5 h-5 text-[var(--color-success)]" />
             )}
             {isPassword && (
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-neutral-400 hover:text-neutral-600 focus:outline-none"
+                className="text-[var(--color-foreground-subtle)] hover:text-[var(--color-foreground)] focus:outline-none"
                 tabIndex={-1}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
@@ -190,7 +190,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               </button>
             )}
             {rightIcon && !isPassword && !hasError && !hasSuccess && (
-              <span className={clsx('text-neutral-400', sizeStyles[size].icon)}>
+              <span className={clsx('text-[var(--color-foreground-subtle)]', sizeStyles[size].icon)}>
                 {rightIcon}
               </span>
             )}
@@ -204,10 +204,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={clsx(
               'text-sm',
               hasError
-                ? 'text-red-600'
+                ? 'text-[var(--color-error)]'
                 : hasSuccess
-                  ? 'text-emerald-600'
-                  : 'text-neutral-500'
+                  ? 'text-[var(--color-success)]'
+                  : 'text-[var(--color-foreground-muted)]'
             )}
           >
             {error || success || helperText}

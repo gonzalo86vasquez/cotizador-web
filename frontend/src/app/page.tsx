@@ -1,283 +1,401 @@
 import Link from 'next/link';
-import { ArrowRight, Truck, Shield, Clock, Phone, Sparkles, Zap, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Truck,
+  Shield,
+  Clock,
+  Phone,
+  CheckCircle2,
+  ChevronRight,
+} from 'lucide-react';
 import { CategoryCard } from '@/components/features/CategoryCard';
 import { ProductCard } from '@/components/features/ProductCard';
 import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { categories, products } from '@/data/mock';
 
 export default function HomePage() {
   const featuredProducts = products.slice(0, 4);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-animated min-h-[600px] lg:min-h-[700px]">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Grid pattern */}
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px',
-            }}
-          />
-          {/* Floating orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-float delay-300" />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-float delay-500" />
-        </div>
+    <div className="min-h-screen bg-[var(--color-background)]">
 
-        <Container size="wide" className="relative py-20 lg:py-32">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="mb-6 animate-fade-in-down">
-              <Badge variant="primary" className="bg-white/10 text-white border border-white/20 backdrop-blur-sm">
-                <Sparkles className="w-3.5 h-3.5" />
-                Mas de 20 anos de experiencia
-              </Badge>
+      {/* ══════════════════════════════════════════
+          HERO
+          ══════════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-gradient-hero bg-noise">
+        {/* Mesh gradient glow spots */}
+        <div className="absolute inset-0 bg-gradient-mesh pointer-events-none" />
+
+        {/* Forge orange glow */}
+        <div
+          className="absolute pointer-events-none animate-glow-pulse"
+          style={{
+            top: '-20%',
+            right: '-10%',
+            width: '800px',
+            height: '800px',
+            background: 'radial-gradient(ellipse at center, rgba(249,115,22,0.08) 0%, transparent 60%)',
+          }}
+        />
+
+        {/* Cobalt blue glow */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            bottom: '-10%',
+            left: '-5%',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.05) 0%, transparent 60%)',
+          }}
+        />
+
+        <Container size="wide" className="relative z-10">
+          <div className="pt-20 pb-20 lg:pt-28 lg:pb-28 max-w-3xl">
+
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-8 animate-fade-in-down">
+              <div className="h-px w-8 bg-forge-600" />
+              <span className="text-xs font-semibold tracking-[0.18em] uppercase text-forge-500">
+                Industria Minera · Chile · Est. 2003
+              </span>
             </div>
 
-            {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight animate-fade-in-up">
-              Repuestos de{' '}
-              <span className="text-gradient-hero">Alta Calidad</span>
-              {' '}para Molinos SAC
+            {/* Main heading */}
+            <h1
+              className="animate-fade-in-up"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                fontSize: 'clamp(2.8rem, 7vw, 5rem)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.03em',
+                color: 'var(--color-foreground)',
+                marginBottom: '1.5rem',
+              }}
+            >
+              Repuestos de<br />
+              Alta Calidad<br />
+              <span className="text-gradient-forge">para Molinos SAC</span>
             </h1>
 
-            {/* Description */}
-            <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed animate-fade-in-up delay-100">
-              Abastecemos a la mineria chilena con piezas y componentes de primera calidad.
-              Solicita tu cotizacion hoy y recibe respuesta en menos de 24 horas.
+            {/* Accent bar */}
+            <div
+              className="w-16 h-1 bg-gradient-forge rounded-lg mb-6 animate-fade-in-up"
+              style={{ animationDelay: '100ms' }}
+            />
+
+            {/* Body */}
+            <p
+              className="text-lg text-[var(--color-foreground-muted)] leading-relaxed max-w-lg mb-10 animate-fade-in-up"
+              style={{ animationDelay: '150ms' }}
+            >
+              Abastecemos a la minería chilena con piezas y componentes
+              de primera calidad. Solicita tu cotización y recibe
+              respuesta en menos de 24 horas.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="mt-10 flex flex-wrap gap-4 animate-fade-in-up delay-200">
+            {/* CTAs */}
+            <div
+              className="flex flex-wrap gap-4 animate-fade-in-up"
+              style={{ animationDelay: '200ms' }}
+            >
               <Link href="/catalogo">
-                <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100 shadow-xl hover:shadow-2xl">
-                  Ver Catalogo
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
+                <button className="inline-flex items-center gap-2 px-7 py-3.5 bg-forge-600 text-white font-semibold rounded-lg transition-all duration-150 hover:bg-forge-500 hover:shadow-[0_8px_30px_-4px_rgba(249,115,22,0.4)] active:scale-[0.98] text-sm tracking-wide">
+                  Ver Catálogo
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </Link>
+
               <Link href="/contacto">
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="text-white border border-white/30 hover:bg-white/10 hover:border-white/50"
-                >
+                <button className="inline-flex items-center gap-2 px-7 py-3.5 text-forge-400 font-semibold rounded-lg border border-[var(--color-border)] transition-all duration-150 hover:bg-[var(--color-background-muted)] hover:border-forge-500 active:scale-[0.98] text-sm tracking-wide">
                   Contactar Asesor
-                </Button>
+                </button>
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div className="mt-12 flex flex-wrap items-center gap-8 text-white/70 text-sm animate-fade-in-up delay-300">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                <span>Despacho a faenas</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                <span>Productos certificados</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                <span>Soporte tecnico 24/7</span>
-              </div>
-            </div>
-          </div>
-        </Container>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
-      </section>
-
-      {/* Features Section */}
-      <section className="relative -mt-16">
-        <Container size="wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              {
-                icon: Truck,
-                title: 'Despacho a Faenas',
-                description: 'Envio directo a tu operacion minera',
-                color: 'violet',
-              },
-              {
-                icon: Shield,
-                title: 'Calidad Garantizada',
-                description: 'Productos certificados y testeados',
-                color: 'emerald',
-              },
-              {
-                icon: Clock,
-                title: 'Respuesta Rapida',
-                description: 'Cotizacion en menos de 24 horas',
-                color: 'amber',
-              },
-              {
-                icon: Phone,
-                title: 'Soporte Tecnico',
-                description: 'Asesoria especializada disponible',
-                color: 'blue',
-              },
-            ].map((feature, index) => (
-              <div
-                key={feature.title}
-                className="group relative bg-white rounded-2xl p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_2px_4px_rgba(0,0,0,0.05),0_12px_24px_rgba(0,0,0,0.05)] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_8px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${
-                    feature.color === 'violet'
-                      ? 'bg-violet-100 text-violet-600'
-                      : feature.color === 'emerald'
-                        ? 'bg-emerald-100 text-emerald-600'
-                        : feature.color === 'amber'
-                          ? 'bg-amber-100 text-amber-600'
-                          : 'bg-blue-100 text-blue-600'
-                  }`}
-                >
-                  <feature.icon className="w-6 h-6" />
+            {/* Stats */}
+            <div
+              className="flex flex-wrap gap-10 mt-14 pt-10 border-t border-[var(--color-border)] animate-fade-in-up"
+              style={{ animationDelay: '300ms' }}
+            >
+              {[
+                { value: '20+', label: 'Años Experiencia' },
+                { value: '500+', label: 'Productos' },
+                { value: '<24h', label: 'Respuesta' },
+                { value: '100%', label: 'Certificado' },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <div
+                    className="text-gradient-forge font-extrabold leading-none animate-count-up"
+                    style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', letterSpacing: '-0.03em' }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-xs uppercase tracking-[0.1em] text-[var(--color-foreground-muted)] mt-1 font-medium">
+                    {stat.label}
+                  </div>
                 </div>
-                <h3 className="font-semibold text-neutral-900 mb-1">{feature.title}</h3>
-                <p className="text-sm text-neutral-500">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-24 bg-gradient-mesh">
-        <Container size="wide">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <Badge variant="primary" className="mb-4">
-                <Zap className="w-3.5 h-3.5" />
-                Explora nuestro catalogo
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">
-                Categorias de Productos
-              </h2>
-              <p className="mt-3 text-neutral-600 max-w-xl">
-                Encuentra los repuestos que necesitas organizados por tipo de componente
-              </p>
+              ))}
             </div>
-            <Link
-              href="/categorias"
-              className="inline-flex items-center gap-2 text-violet-600 hover:text-violet-700 font-medium group"
-            >
-              Ver todas las categorias
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.slice(0, 6).map((category, index) => (
-              <div
-                key={category.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CategoryCard category={category} />
-              </div>
-            ))}
           </div>
         </Container>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-24 bg-neutral-50">
+      {/* ══════════════════════════════════════════
+          FEATURES
+          ══════════════════════════════════════════ */}
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-background-subtle)]">
         <Container size="wide">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <Badge variant="success" className="mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
-                Los mas solicitados
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">
-                Productos Destacados
-              </h2>
-              <p className="mt-3 text-neutral-600 max-w-xl">
-                Los repuestos preferidos por nuestros clientes del sector minero
-              </p>
+          <ScrollReveal stagger threshold={0.15}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
+              {[
+                {
+                  icon: Truck,
+                  title: 'Despacho a Faenas',
+                  description: 'Envío directo a tu operación minera, en cualquier región.',
+                },
+                {
+                  icon: Shield,
+                  title: 'Calidad Garantizada',
+                  description: 'Productos certificados bajo estándares industriales exigentes.',
+                },
+                {
+                  icon: Clock,
+                  title: 'Respuesta en 24h',
+                  description: 'Cotización formal en menos de un día hábil, garantizado.',
+                },
+                {
+                  icon: Phone,
+                  title: 'Soporte Técnico',
+                  description: 'Asesoría especializada de ingenieros con 20+ años en faena.',
+                },
+              ].map((feature) => {
+                const Icon = feature.icon;
+                return (
+                  <div
+                    key={feature.title}
+                    className="group p-8 hover:bg-[var(--color-background-muted)] transition-colors duration-200"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-[var(--color-background-muted)] flex items-center justify-center mb-5 group-hover:bg-[var(--color-primary-light)] transition-colors">
+                      <Icon className="w-5 h-5 text-cobalt-500" />
+                    </div>
+                    <h3 className="font-semibold text-[var(--color-foreground)] mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-[var(--color-foreground-muted)] leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-            <Link
-              href="/catalogo"
-              className="inline-flex items-center gap-2 text-violet-600 hover:text-violet-700 font-medium group"
-            >
-              Ver catalogo completo
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product, index) => (
-              <div
-                key={product.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center md:hidden">
-            <Link href="/catalogo">
-              <Button variant="secondary">
-                Ver catalogo completo
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+          </ScrollReveal>
         </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-900 to-violet-900" />
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
+      {/* ══════════════════════════════════════════
+          CATEGORIES
+          ══════════════════════════════════════════ */}
+      <section className="py-24 bg-[var(--color-background)]">
+        <Container size="wide">
+          <ScrollReveal direction="up" threshold={0.2}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-px w-6 bg-forge-600" />
+                  <span className="text-xs font-semibold tracking-[0.14em] uppercase text-forge-500">
+                    Explora nuestro catálogo
+                  </span>
+                </div>
+                <h2
+                  className="text-[var(--color-foreground)]"
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 800,
+                    fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Categorías de Productos
+                </h2>
+                <p className="mt-3 text-[var(--color-foreground-muted)] max-w-md text-sm leading-relaxed">
+                  Componentes organizados por tipo. Encuentra lo que necesitas
+                  para mantener tu molino en operación.
+                </p>
+              </div>
 
-        <Container size="default" className="relative text-center">
-          <Badge variant="primary" className="mb-6 bg-white/10 text-white border border-white/20">
-            Atencion personalizada
-          </Badge>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            No encuentras lo que buscas?
-          </h2>
-
-          <p className="mt-6 text-lg text-neutral-300 max-w-2xl mx-auto">
-            Nuestro equipo tecnico te ayudara a encontrar la pieza exacta que necesitas para tu molino.
-            Contamos con mas de 20 anos de experiencia en el sector.
-          </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/contacto">
-              <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100 shadow-xl">
-                Contactar Asesor
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            <a href="tel:+56223456789">
-              <Button
-                size="lg"
-                variant="ghost"
-                className="text-white border border-white/30 hover:bg-white/10"
+              <Link
+                href="/categorias"
+                className="flex items-center gap-2 text-sm font-semibold text-forge-500 hover:text-forge-400 transition-colors self-start md:self-auto"
               >
-                <Phone className="w-5 h-5" />
-                +56 2 2345 6789
-              </Button>
-            </a>
-          </div>
+                Ver todas
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal stagger threshold={0.15}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {categories.slice(0, 6).map((category, index) => (
+                <div
+                  key={category.id}
+                  className="animate-fade-in-up"
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  <CategoryCard category={category} />
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </Container>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          FEATURED PRODUCTS
+          ══════════════════════════════════════════ */}
+      <section className="py-24 bg-[var(--color-background-subtle)] border-y border-[var(--color-border)]">
+        <Container size="wide">
+          <ScrollReveal direction="up" threshold={0.2}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-px w-6 bg-forge-600" />
+                  <span className="text-xs font-semibold tracking-[0.14em] uppercase text-forge-500">
+                    Los más solicitados
+                  </span>
+                </div>
+                <h2
+                  className="text-[var(--color-foreground)]"
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 800,
+                    fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Productos Destacados
+                </h2>
+                <p className="mt-3 text-[var(--color-foreground-muted)] max-w-md text-sm leading-relaxed">
+                  Repuestos preferidos por equipos de mantenimiento en faenas de cobre y hierro.
+                </p>
+              </div>
+
+              <Link
+                href="/catalogo"
+                className="flex items-center gap-2 text-sm font-semibold text-forge-500 hover:text-forge-400 transition-colors self-start md:self-auto"
+              >
+                Catálogo completo
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal stagger threshold={0.15}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {featuredProducts.map((product, index) => (
+                <div
+                  key={product.id}
+                  className="animate-fade-in-up"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </Container>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          TRUST BAR
+          ══════════════════════════════════════════ */}
+      <section className="bg-[var(--color-background)] border-b border-[var(--color-border)]">
+        <Container size="wide">
+          <ScrollReveal direction="fade" threshold={0.15}>
+            <div className="flex flex-wrap items-center justify-center gap-8 py-8">
+              {[
+                'Despacho a faenas',
+                'Productos certificados',
+                'Soporte técnico 24/7',
+                'Más de 500 referencias',
+                'Respuesta en &lt; 24 horas',
+              ].map((item, i) => (
+                <div key={item} className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-forge-500" />
+                  <span className="text-xs font-medium uppercase tracking-[0.08em] text-[var(--color-foreground-muted)]">
+                    {item}
+                  </span>
+                  {i < 4 && (
+                    <span className="hidden lg:block ml-4 text-[var(--color-border)] text-xl">|</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </Container>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          CTA
+          ══════════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-gradient-forge">
+        {/* Noise texture */}
+        <div className="absolute inset-0 bg-noise pointer-events-none" />
+
+        {/* Glow effect */}
+        <div
+          className="absolute inset-0 pointer-events-none animate-glow-pulse"
+          style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 60%)' }}
+        />
+
+        <Container size="default" className="relative z-10 py-24 text-center">
+          <ScrollReveal direction="scale" threshold={0.3}>
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="h-px w-8 bg-white/40" />
+              <span className="text-xs font-semibold tracking-[0.18em] uppercase text-white/70">
+                Atención personalizada
+              </span>
+              <div className="h-px w-8 bg-white/40" />
+            </div>
+
+            <h2
+              className="text-white mb-5"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                fontSize: 'clamp(2rem, 5vw, 3.2rem)',
+                letterSpacing: '-0.03em',
+                lineHeight: 1.05,
+              }}
+            >
+              ¿No encuentras<br />lo que buscas?
+            </h2>
+
+            <p className="text-white/90 text-base leading-relaxed max-w-md mx-auto mb-10">
+              Nuestro equipo técnico te ayudará a identificar la pieza exacta
+              que necesitas. Más de 20 años de experiencia en molinos SAC.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/contacto">
+                <button className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-forge-700 font-semibold rounded-lg text-sm tracking-wide transition-all duration-150 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-[0.98]">
+                  Contactar Asesor
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+
+              <a href="tel:+56223456789">
+                <button className="inline-flex items-center gap-2 px-8 py-3.5 border border-white/30 text-white font-semibold rounded-lg text-sm tracking-wide transition-all duration-150 hover:bg-white/10 hover:border-white/50 active:scale-[0.98]">
+                  <Phone className="w-4 h-4" />
+                  +56 2 2345 6789
+                </button>
+              </a>
+            </div>
+          </ScrollReveal>
         </Container>
       </section>
     </div>

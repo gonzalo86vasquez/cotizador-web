@@ -37,7 +37,7 @@ export default function ProductoPage() {
           <h1 className="text-3xl font-bold text-neutral-900 mb-4">Producto no encontrado</h1>
           <p className="text-neutral-600 mb-8">El producto que buscas no existe o fue eliminado.</p>
           <Button
-            variant="primary"
+            variant="forge"
             size="lg"
             leftIcon={<ChevronLeft />}
             onClick={() => window.location.href = '/catalogo'}
@@ -63,7 +63,7 @@ export default function ProductoPage() {
           <li>
             <Link
               href="/"
-              className="text-neutral-500 hover:text-violet-600 transition-colors"
+              className="text-neutral-500 hover:text-teal-600 transition-colors"
             >
               Inicio
             </Link>
@@ -72,7 +72,7 @@ export default function ProductoPage() {
           <li>
             <Link
               href="/catalogo"
-              className="text-neutral-500 hover:text-violet-600 transition-colors"
+              className="text-neutral-500 hover:text-teal-600 transition-colors"
             >
               Catálogo
             </Link>
@@ -132,7 +132,7 @@ export default function ProductoPage() {
                   onClick={() => setSelectedImage(index)}
                   className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
                     selectedImage === index
-                      ? 'border-violet-600 ring-2 ring-violet-500/20'
+                      ? 'border-teal-600 ring-2 ring-teal-500/20'
                       : 'border-neutral-200 hover:border-neutral-300'
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function ProductoPage() {
         {/* Product Info */}
         <div>
           {/* Category */}
-          <Badge variant="primary" size="md" className="mb-3">
+          <Badge variant="forge" size="md" className="mb-3">
             {product.categoryName}
           </Badge>
 
@@ -183,10 +183,10 @@ export default function ProductoPage() {
           </div>
 
           {/* Delivery Info */}
-          <Card variant="elevated" padding="md" className="mb-8 bg-gradient-to-br from-violet-50 to-purple-50 border-violet-100">
+          <Card variant="elevated" padding="md" className="mb-8 bg-teal-50 border-teal-100">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-white shadow-sm">
-                <Truck className="w-6 h-6 text-violet-600" />
+                <Truck className="w-6 h-6 text-teal-600" />
               </div>
               <div className="flex-1">
                 <p className="font-semibold text-neutral-900 mb-1">
@@ -239,7 +239,7 @@ export default function ProductoPage() {
           {/* Add to Quote Button */}
           <div className="space-y-3 mb-8">
             <Button
-              variant={isAdded ? 'secondary' : 'primary'}
+              variant={isAdded ? 'iron' : 'forge'}
               size="xl"
               fullWidth
               onClick={handleAddToQuote}
@@ -257,7 +257,7 @@ export default function ProductoPage() {
 
             {isInQuote && (
               <Button
-                variant="outline"
+                variant="outline-forge"
                 size="lg"
                 fullWidth
                 rightIcon={<ChevronRight />}

@@ -53,7 +53,7 @@ function CatalogoContent() {
     <Container size="wide" section="md">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-neutral-900 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold text-slate-900">
           Catálogo de Productos
         </h1>
         <p className="mt-2 text-lg text-neutral-600">
@@ -98,7 +98,7 @@ function CatalogoContent() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full h-10 px-3 border border-neutral-200 rounded-xl bg-white text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 hover:border-neutral-300 transition-all duration-150"
+                className="w-full h-10 px-3 border border-neutral-200 rounded-xl bg-white text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 hover:border-neutral-300 transition-all duration-150"
               >
                 <option value="">Todas las categorías</option>
                 {categories.map((cat) => (
@@ -124,7 +124,7 @@ function CatalogoContent() {
                       name="availability"
                       checked={availability === opt.value}
                       onChange={() => setAvailability(opt.value as typeof availability)}
-                      className="w-4 h-4 text-violet-600 border-neutral-300 focus:ring-violet-500/20 focus:ring-2 transition-all"
+                      className="w-4 h-4 text-teal-600 border-neutral-300 focus:ring-teal-500/20 focus:ring-2 transition-all"
                     />
                     <span className="text-sm text-neutral-600 group-hover:text-neutral-900 transition-colors">
                       {opt.label}
@@ -143,7 +143,7 @@ function CatalogoContent() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <Button
-                  variant="secondary"
+                  variant="iron"
                   size="md"
                   onClick={() => setShowFilters(true)}
                   leftIcon={<Filter />}
@@ -162,7 +162,7 @@ function CatalogoContent() {
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-md transition-all ${
                     viewMode === 'grid'
-                      ? 'bg-white text-violet-600 shadow-sm'
+                      ? 'bg-white text-teal-600 shadow-sm'
                       : 'text-neutral-400 hover:text-neutral-600'
                   }`}
                   aria-label="Vista en grilla"
@@ -173,7 +173,7 @@ function CatalogoContent() {
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-md transition-all ${
                     viewMode === 'list'
-                      ? 'bg-white text-violet-600 shadow-sm'
+                      ? 'bg-white text-teal-600 shadow-sm'
                       : 'text-neutral-400 hover:text-neutral-600'
                   }`}
                   aria-label="Vista en lista"
@@ -190,14 +190,14 @@ function CatalogoContent() {
               <span className="text-sm font-medium text-neutral-500">Filtros activos:</span>
               {searchQuery && (
                 <Badge
-                  variant="primary"
+                  variant="forge"
                   size="md"
-                  className="cursor-pointer hover:bg-violet-200 transition-colors"
+                  className="cursor-pointer hover:bg-teal-100 transition-colors"
                 >
                   Búsqueda: {searchQuery}
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="ml-1 hover:text-violet-900"
+                    className="ml-1 hover:text-teal-900"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -205,14 +205,14 @@ function CatalogoContent() {
               )}
               {selectedCategory && (
                 <Badge
-                  variant="primary"
+                  variant="forge"
                   size="md"
-                  className="cursor-pointer hover:bg-violet-200 transition-colors"
+                  className="cursor-pointer hover:bg-teal-100 transition-colors"
                 >
                   {getCategoryBySlug(selectedCategory)?.name}
                   <button
                     onClick={() => setSelectedCategory('')}
-                    className="ml-1 hover:text-violet-900"
+                    className="ml-1 hover:text-teal-900"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -220,14 +220,14 @@ function CatalogoContent() {
               )}
               {availability !== 'all' && (
                 <Badge
-                  variant="primary"
+                  variant="forge"
                   size="md"
-                  className="cursor-pointer hover:bg-violet-200 transition-colors"
+                  className="cursor-pointer hover:bg-teal-100 transition-colors"
                 >
                   {availability === 'inStock' ? 'En stock' : 'Bajo pedido'}
                   <button
                     onClick={() => setAvailability('all')}
-                    className="ml-1 hover:text-violet-900"
+                    className="ml-1 hover:text-teal-900"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -260,7 +260,7 @@ function CatalogoContent() {
                   No hay productos que coincidan con los filtros seleccionados.
                 </p>
                 <Button
-                  variant="primary"
+                  variant="forge"
                   size="md"
                   onClick={clearFilters}
                 >
@@ -316,7 +316,7 @@ function CatalogoContent() {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full h-10 px-3 border border-neutral-200 rounded-xl bg-white text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition-all"
+                  className="w-full h-10 px-3 border border-neutral-200 rounded-xl bg-white text-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
                 >
                   <option value="">Todas las categorías</option>
                   {categories.map((cat) => (
@@ -342,7 +342,7 @@ function CatalogoContent() {
                         name="availability-mobile"
                         checked={availability === opt.value}
                         onChange={() => setAvailability(opt.value as typeof availability)}
-                        className="w-4 h-4 text-violet-600 border-neutral-300 focus:ring-violet-500/20 focus:ring-2 transition-all"
+                        className="w-4 h-4 text-teal-600 border-neutral-300 focus:ring-teal-500/20 focus:ring-2 transition-all"
                       />
                       <span className="text-sm text-neutral-600 group-hover:text-neutral-900 transition-colors">
                         {opt.label}
@@ -355,7 +355,7 @@ function CatalogoContent() {
               {/* Actions */}
               <div className="flex gap-3 pt-6 border-t border-neutral-100">
                 <Button
-                  variant="secondary"
+                  variant="iron"
                   size="lg"
                   onClick={clearFilters}
                   fullWidth
@@ -363,7 +363,7 @@ function CatalogoContent() {
                   Limpiar
                 </Button>
                 <Button
-                  variant="primary"
+                  variant="forge"
                   size="lg"
                   onClick={() => setShowFilters(false)}
                   fullWidth

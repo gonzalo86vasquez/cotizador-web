@@ -5,48 +5,20 @@ import { clsx } from 'clsx';
 import { Loader2 } from 'lucide-react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Visual style variant */
-  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
-  /** Size of the button */
+  variant?: 'forge' | 'iron' | 'ghost' | 'danger' | 'outline-forge';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  /** Show loading spinner and disable button */
   isLoading?: boolean;
-  /** Icon to show before children */
   leftIcon?: ReactNode;
-  /** Icon to show after children */
   rightIcon?: ReactNode;
-  /** Make button full width */
   fullWidth?: boolean;
-  /** Make button square (for icon-only buttons) */
   isIconOnly?: boolean;
 }
 
-/**
- * Button Component
- *
- * A versatile button component with multiple variants, sizes, and states.
- * Inspired by Stripe's clean, professional button design.
- *
- * @example
- * ```tsx
- * <Button variant="primary" size="md">
- *   Click me
- * </Button>
- *
- * <Button variant="secondary" leftIcon={<Plus />}>
- *   Add Item
- * </Button>
- *
- * <Button variant="primary" isLoading>
- *   Processing...
- * </Button>
- * ```
- */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
-      variant = 'primary',
+      variant = 'forge',
       size = 'md',
       isLoading = false,
       leftIcon,
@@ -62,56 +34,48 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isDisabled = disabled || isLoading;
 
     const baseStyles = clsx(
-      // Base
       'inline-flex items-center justify-center gap-2',
-      'font-medium leading-tight',
-      'rounded-xl',
+      'font-semibold leading-tight',
+      'rounded-lg',
       'transition-all duration-150 ease-out',
       'cursor-pointer select-none whitespace-nowrap',
-      // Focus
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-      // Disabled
       'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
-      // Active
       'active:scale-[0.98]'
     );
 
     const variantStyles = {
-      primary: clsx(
-        'bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-500',
-        'text-white',
-        'shadow-[0_4px_14px_0_rgba(139,92,246,0.25)]',
-        'hover:shadow-[0_10px_40px_-10px_rgba(139,92,246,0.35)]',
-        'hover:brightness-105',
-        'focus-visible:ring-violet-500'
+      forge: clsx(
+        'bg-[var(--forge-600)] text-white',
+        'shadow-[0_4px_14px_0_rgba(249,115,22,0.25)]',
+        'hover:bg-[var(--forge-500)] hover:shadow-[0_6px_20px_0_rgba(249,115,22,0.35)]',
+        'focus-visible:ring-[var(--forge-500)]'
       ),
-      secondary: clsx(
-        'bg-white',
-        'text-neutral-900',
-        'border border-neutral-200',
-        'shadow-sm',
-        'hover:bg-neutral-50 hover:border-neutral-300',
-        'focus-visible:ring-neutral-400'
+      iron: clsx(
+        'bg-[var(--iron-800)] text-[var(--iron-50)]',
+        'border border-[var(--color-border)] shadow-sm',
+        'hover:bg-[var(--iron-700)]',
+        'focus-visible:ring-[var(--forge-500)]',
+        // Light theme variant
+        '[data-theme="light"]_&:bg-[var(--slate-100)]',
+        '[data-theme="light"]_&:text-[var(--slate-900)]',
+        '[data-theme="light"]_&:hover:bg-[var(--slate-200)]'
       ),
       ghost: clsx(
-        'bg-transparent',
-        'text-neutral-600',
-        'hover:bg-neutral-100 hover:text-neutral-900',
-        'focus-visible:ring-neutral-400'
+        'bg-transparent text-[var(--color-foreground-muted)]',
+        'hover:bg-[var(--color-background-muted)] hover:text-[var(--color-foreground)]',
+        'focus-visible:ring-[var(--forge-500)]'
       ),
       danger: clsx(
-        'bg-red-600',
-        'text-white',
-        'shadow-sm',
-        'hover:bg-red-500',
-        'focus-visible:ring-red-500'
+        'bg-[var(--color-error)] text-white shadow-sm',
+        'hover:brightness-110',
+        'focus-visible:ring-[var(--color-error)]'
       ),
-      outline: clsx(
-        'bg-transparent',
-        'text-violet-600',
-        'border border-violet-200',
-        'hover:bg-violet-50 hover:border-violet-300',
-        'focus-visible:ring-violet-500'
+      'outline-forge': clsx(
+        'bg-transparent text-[var(--forge-500)]',
+        'border border-[var(--forge-500)]',
+        'hover:bg-[var(--color-primary-light)] hover:border-[var(--forge-600)]',
+        'focus-visible:ring-[var(--forge-500)]'
       ),
     };
 
@@ -151,17 +115,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         ) : (
           <>
-            {leftIcon && (
-              <span className={clsx(iconSizeStyles[size], 'flex-shrink-0')}>
-                {leftIcon}
-              </span>
-            )}
+            {leftIcon && <span className={clsx(iconSizeStyles[size], 'flex-shrink-0')}>{leftIcon}</span>}
             {children}
-            {rightIcon && (
-              <span className={clsx(iconSizeStyles[size], 'flex-shrink-0')}>
-                {rightIcon}
-              </span>
-            )}
+            {rightIcon && <span className={clsx(iconSizeStyles[size], 'flex-shrink-0')}>{rightIcon}</span>}
           </>
         )}
       </button>
@@ -170,5 +126,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
 export default Button;

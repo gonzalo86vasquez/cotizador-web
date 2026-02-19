@@ -1,0 +1,28 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="forgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F97316;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#EA580C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C2410C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer gear teeth -->
+  <g fill="url(#forgeGradient)" class="animate-spin-slow" transform-origin="center">
+    <path d="M24 4 L26 8 L30 6 L28 10 L32 12 L28 14 L30 18 L26 16 L24 20 L22 16 L18 18 L20 14 L16 12 L20 10 L18 6 L22 8 Z"/>
+
+    <!-- Inner circle -->
+    <circle cx="24" cy="24" r="8" fill="#08090B" stroke="url(#forgeGradient)" stroke-width="2"/>
+    <circle cx="24" cy="24" r="4" fill="url(#forgeGradient)"/>
+  </g>
+
+  <style>
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 3s linear infinite;
+    }
+  </style>
+</svg>

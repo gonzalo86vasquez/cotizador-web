@@ -11,7 +11,7 @@
  * <Container size="default">
  *   <Card variant="default" padding="lg">
  *     <Input label="Email" placeholder="you@example.com" />
- *     <Button variant="primary">Submit</Button>
+ *     <Button variant="forge">Submit</Button>
  *     <Badge variant="success">Active</Badge>
  *   </Card>
  * </Container>

@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   /** Visual style variant */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+  variant?: 'default' | 'forge' | 'success' | 'warning' | 'error' | 'info';
   /** Size of the badge */
   size?: 'sm' | 'md' | 'lg';
   /** Show a dot indicator */
@@ -19,10 +19,10 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * Badge Component
+ * Badge Component - FORGE Design System
  *
  * A compact label for status, categories, or counts.
- * Features dot indicators and semantic color variants.
+ * Theme-aware with dark/light mode support.
  *
  * @example
  * ```tsx
@@ -30,8 +30,8 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
  *
  * <Badge variant="warning" dot>Bajo Pedido</Badge>
  *
- * <Badge variant="primary" icon={<Clock />}>
- *   15 dias
+ * <Badge variant="forge" icon={<Flame />}>
+ *   Premium
  * </Badge>
  *
  * <Badge variant="error" outline>Urgente</Badge>
@@ -67,30 +67,33 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
     const radiusStyles = pill ? 'rounded-full' : 'rounded-md';
 
     const filledVariantStyles = {
-      default: 'bg-neutral-100 text-neutral-700',
-      primary: 'bg-violet-100 text-violet-700',
-      success: 'bg-emerald-100 text-emerald-700',
-      warning: 'bg-amber-100 text-amber-700',
-      error: 'bg-red-100 text-red-700',
-      info: 'bg-blue-100 text-blue-700',
+      default: 'bg-[var(--color-background-muted)] text-[var(--color-foreground-muted)]',
+      forge: clsx(
+        'bg-[var(--color-primary-light)] text-[var(--forge-700)]',
+        '[data-theme="light"]_&:bg-[var(--forge-100)] [data-theme="light"]_&:text-[var(--forge-800)]'
+      ),
+      success: 'bg-[var(--color-success-bg)] text-[var(--color-success)]',
+      warning: 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]',
+      error: 'bg-[var(--color-error-bg)] text-[var(--color-error)]',
+      info: 'bg-[var(--color-info-bg)] text-[var(--color-info)]',
     };
 
     const outlineVariantStyles = {
-      default: 'bg-transparent border border-neutral-300 text-neutral-700',
-      primary: 'bg-transparent border border-violet-300 text-violet-700',
-      success: 'bg-transparent border border-emerald-300 text-emerald-700',
-      warning: 'bg-transparent border border-amber-300 text-amber-700',
-      error: 'bg-transparent border border-red-300 text-red-700',
-      info: 'bg-transparent border border-blue-300 text-blue-700',
+      default: 'bg-transparent border border-[var(--color-border-strong)] text-[var(--color-foreground-muted)]',
+      forge: 'bg-transparent border border-[var(--forge-500)] text-[var(--forge-500)]',
+      success: 'bg-transparent border border-[var(--color-success)] text-[var(--color-success)]',
+      warning: 'bg-transparent border border-[var(--color-warning)] text-[var(--color-warning)]',
+      error: 'bg-transparent border border-[var(--color-error)] text-[var(--color-error)]',
+      info: 'bg-transparent border border-[var(--color-info)] text-[var(--color-info)]',
     };
 
     const dotColors = {
-      default: 'bg-neutral-500',
-      primary: 'bg-violet-500',
-      success: 'bg-emerald-500',
-      warning: 'bg-amber-500',
-      error: 'bg-red-500',
-      info: 'bg-blue-500',
+      default: 'bg-[var(--color-foreground-subtle)]',
+      forge: 'bg-[var(--forge-500)]',
+      success: 'bg-[var(--color-success)]',
+      warning: 'bg-[var(--color-warning)]',
+      error: 'bg-[var(--color-error)]',
+      info: 'bg-[var(--color-info)]',
     };
 
     const iconSizes = {
